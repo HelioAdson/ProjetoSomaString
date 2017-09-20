@@ -12,7 +12,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 SRC = testa_string_soma.cpp string_soma.cpp
 
-$(ODIR)/%.o: %.c $(DEPS)
+$(ODIR)/%.o: %.cpp $(DEPS)
 	$(CC) -std=c++11 -c -o $@ $< $(CFLAGS)
 
 testa_string_soma_stdin: $(OBJ)
