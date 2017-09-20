@@ -16,6 +16,21 @@ int soma_string(char *string_entrada) {
   int cont_num_por_linha = 0;
   bool delimitador_encontrado;
 
+  if (entrada.find("//[") == 0) {
+    entrada = entrada.substr(entrada.find("["));
+    while (entrada.find("]") != std::string::npos) {
+      inicio = entrada.find("[");
+      fim = entrada.find("]");
+      delimitadores.push_back(entrada.substr(inicio + 1, fim - inicio - 1));
+      entrada = entrada.substr(fim + 1);
+    }
+    if (entrada[0] == '\n') {
+      entrada = entrada.substr(1);
+    } else {
+      return -1;
+    }
+  }
+
   while (entrada.size() > 0) {
     if (entrada.find_first_of("1234567890") == 0) {
       inicio = entrada.find_first_of("1234567890");

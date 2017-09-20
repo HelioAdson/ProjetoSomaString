@@ -9,8 +9,12 @@ TEST(soma_string, Invalido) {
   EXPECT_EQ(-1, soma_string("1,2"));
 }
 
-TEST(soma_string, ComDelimitador) {
+TEST(soma_string, ComDelimitadorValido) {
   EXPECT_EQ(3, soma_string("//[%]\n1%2\n"));
+}
+
+TEST(soma_string, ComDelimitadorInvalido) {
+  EXPECT_EQ(-1, soma_string("//[%]1%2\n"));
 }
 
 int main(int argc, char **argv){
