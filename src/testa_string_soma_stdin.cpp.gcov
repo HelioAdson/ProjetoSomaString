@@ -1,0 +1,23 @@
+        -:    0:Source:testa_string_soma_stdin.cpp
+        -:    0:Graph:testa_string_soma_stdin.gcno
+        -:    0:Data:testa_string_soma_stdin.gcda
+        -:    0:Runs:8
+        -:    0:Programs:1
+        -:    1:// @file testa_string_soma_stdin.cpp
+        -:    2:// @breif Arquivo contendo o a função main() que realiza a leitura da string e a chamada da função soma_string
+        -:    3://
+        -:    4:// @author Helio Adson
+        -:    5:
+        -:    6:#include "string_soma.hpp"
+        -:    7:#include <iostream>
+        -:    8:#include <cstdio>
+        -:    9:
+        8:   10:int main() {
+        -:   11:  char string_entrada[100];
+        -:   12:  char buffer[40];
+        8:   13:  int resultado = 0;
+        8:   14:  fscanf(stdin, "%[^EOF]", string_entrada);
+        8:   15:  resultado = soma_string(string_entrada);
+        8:   16:  std::cout << resultado << std::endl;
+        8:   17:  return 0;
+       24:   18:}

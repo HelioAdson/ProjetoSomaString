@@ -1,3 +1,8 @@
+// @file testa_string_soma_stdin.cpp
+// @breif Arquivo contendo o a função main() que realiza a leitura da string e a chamada da função soma_string
+//
+// @author Helio Adson
+
 #include "string_soma.hpp"
 #include <iostream>
 #include <cstdio>

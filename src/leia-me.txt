@@ -1,0 +1,17 @@
+Comandos
+
+make testa_string_soma_stdin
+    gera o executável do arquivo testa_string_soma_stdin.cpp com o nome de testa_string_soma_stdin
+    a partir dos arquivos testa_string_soma_stdin.o e string_soma.o
+
+make porcentagem
+    gera o executável do arquivo testa_string_soma_stdin.cpp com o nome de porcentagem para a verficação de 
+    percentual de código testado.
+
+make test
+    gera o executável do arquivo testa_string_soma.cpp com o nome de test para a execução dos testes das funções 
+    implementadas.
+
+make obj/nome_do_arquivo.o
+    gera o .o do arquivo expecificado.
+    ex: make obj/string_soma.o irá gerar o arquivo string_soma.o

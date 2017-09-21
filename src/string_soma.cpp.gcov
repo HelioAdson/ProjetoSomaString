@@ -1,0 +1,150 @@
+        -:    0:Source:string_soma.cpp
+        -:    0:Graph:string_soma.gcno
+        -:    0:Data:string_soma.gcda
+        -:    0:Runs:8
+        -:    0:Programs:1
+        -:    1:// @file string_soma.cpp
+        -:    2:// @breif Arquivo contendo a implementação das funções de string_soma.hpp
+        -:    3://
+        -:    4:// @author Helio Adson
+        -:    5:
+        -:    6:#include "string_soma.hpp"
+        -:    7:#include <string>
+        -:    8:#include <vector>
+        -:    9:#include <tuple>
+        -:   10:
+        -:   11:using namespace std;
+        -:   12:
+        -:   13:// @fun soma_string(char* string_entrada)
+        -:   14://
+        -:   15:// A função recebe como entrada o ponteiro string_entrada e primeiramente verifica a 
+        -:   16:// necessidade de redefinição dos delimitadores, realizando ou não a chamada da função
+        -:   17:// redefine_delimitadores. Logo após a string entrada é analisada e os elementos (números, 
+        -:   18:// delimitadores e quebras de linha) são capturados e armanzenados no vector elementos. Cada 
+        -:   19:// indice do vector elementos é ocupado por uma dupla de strings, sendo a primeira o tipo do 
+        -:   20:// elemento (números delimitadores e quebras de linha) e a segunda seu valor. Em seguida o 
+        -:   21:// vector de elementos é analisado quanto a ordem de tipos dos elementos, caso a ordem esteja
+        -:   22:// correta o somatório e calculado e retornado sem problemas e caso a ordem esteja incorreta a função retorna -1.
+        -:   23://
+        -:   24:// @param string_entrada Ponteiro para char com a string para o cálculo.
+        -:   25:// @return O resultado da soma para o caso valido e -1 para caso contrário.
+        8:   26:int soma_string(char *string_entrada) {
+       16:   27:  string entrada = string_entrada;
+       16:   28:  string elemento_esperado;
+       16:   29:  vector<string> delimitadores = {","};
+       16:   30:  vector<tuple<string, string>> elementos;
+        8:   31:  size_t inicio, fim = 0;
+        8:   32:  int somatorio = 0;
+        8:   33:  int cont = 0;
+        8:   34:  int num = 0;
+        8:   35:  int cont_num_por_linha = 0;
+        -:   36:  bool delimitador_encontrado;
+        -:   37:
+        8:   38:  if (entrada.find("//[") == 0) {
+        3:   39:     cont = redefine_delimitadores(&entrada, &delimitadores);
+        3:   40:     if (cont == -1) {
+        1:   41:       return -1;
+        -:   42:     }
+        -:   43:  }
+        -:   44:
+       53:   45:  while (entrada.size() > 0) {
+       23:   46:    if (entrada.find_first_of("1234567890") == 0) {
+       13:   47:      inicio = entrada.find_first_of("1234567890");
+       13:   48:      fim = entrada.find_first_not_of("1234567890");
+       13:   49:      elementos.push_back(make_tuple("Numero", string(entrada, inicio, fim - inicio)));
+        -:   50:    } else {
+       10:   51:      delimitador_encontrado = false;
+       10:   52:      cont = 0;
+       32:   53:      while (delimitador_encontrado == false && cont < delimitadores.size()){
+       11:   54:        if (entrada.find(delimitadores[cont]) == 0) {
+        8:   55:          inicio = entrada.find(delimitadores[cont]);
+        8:   56:          fim = inicio + delimitadores[cont].size();
+        8:   57:          elementos.push_back(make_tuple("Delimitador", string(entrada, inicio, fim - inicio)));
+        8:   58:          delimitador_encontrado = true;
+        -:   59:        }
+       11:   60:        cont++;
+        -:   61:      }
+       10:   62:      if (delimitador_encontrado == false) {
+        2:   63:        if (entrada.find("\n") == 0) {
+        2:   64:          if (entrada.size() > 2) {
+    #####:   65:            inicio = entrada.find_first_of("\n");
+    #####:   66:            fim = entrada.find_first_not_of("\n");
+    #####:   67:            elementos.push_back(make_tuple("Quebra de linha", string(entrada, inicio, fim - inicio)));
+        -:   68:          } else {
+        2:   69:            inicio = entrada.find_first_of("\n");
+        2:   70:            elementos.push_back(make_tuple("Quebra de linha", string(entrada, inicio, 1)));
+        -:   71:          }
+        -:   72:        } else {
+    #####:   73:          return -1;
+        -:   74:        }
+        -:   75:      }
+        -:   76:    }
+        -:   77:
+       23:   78:    if (entrada.size() == 1) {
+        7:   79:      entrada.clear();
+        -:   80:    } else {
+       16:   81:      entrada = entrada.substr(fim);
+        -:   82:    }
+        -:   83:  }
+        -:   84:
+        7:   85:  elemento_esperado = "Numero";
+       24:   86:  for (cont = 0; cont < elementos.size(); cont++) {
+       22:   87:    if (std::get<0>(elementos[cont]) == elemento_esperado) {
+       19:   88:      if (elemento_esperado == "Numero") {
+       12:   89:        num = stoi(get<1>(elementos[cont]));
+       12:   90:        if (num <= 1000){
+       12:   91:          if (num >= 0){
+       12:   92:            somatorio += num;
+        -:   93:          } else {
+    #####:   94:            return -1;
+        -:   95:          }
+        -:   96:        } 
+       12:   97:        cont_num_por_linha += 1;
+       12:   98:        elemento_esperado = "Delimitador";
+       12:   99:        if (cont_num_por_linha > 3) {
+    #####:  100:          return -1;
+        -:  101:        }
+        -:  102:      } else {
+        7:  103:        elemento_esperado = "Numero";
+        -:  104:      }
+        3:  105:    } else if (get<0>(elementos[cont]) == "Quebra de linha") {
+        2:  106:      cont_num_por_linha = 0;
+        -:  107:    } else {
+        1:  108:      return -1;
+        -:  109:    }
+       21:  110:    if ((cont == elementos.size() - 1) && get<0>(elementos[cont]) != "Quebra de linha") {
+        4:  111:      return -1;
+        -:  112:    }
+        -:  113:  }
+        -:  114:
+        2:  115:  if (elemento_esperado == "Numero") {
+    #####:  116:    return -1;
+        -:  117:  }
+        2:  118:  return somatorio;
+        -:  119:
+        -:  120:}
+        -:  121:
+        -:  122:// @fun redefine_delimitadores (string* entrada, vector<string>* delimitadores)
+        -:  123://
+        -:  124:// Captura os delimitadores definidos na primeira linha da string
+        -:  125://
+        -:  126:// @param entrada Ponteiro para string com os novos delimitadores.
+        -:  127:// @param delimitadores Vector de string contendo os delimitadores que foram encontrados na string entrada.
+        -:  128:// @return 0 caso valido e -1 para caso contrário.
+        3:  129:int redefine_delimitadores(string* entrada, vector<string>* delimitadores) {
+        3:  130:  size_t inicio, fim = 0;
+        3:  131:  *entrada = entrada->substr(entrada->find("["));
+        9:  132:  while (entrada->find("]") != std::string::npos) {
+        3:  133:    inicio = entrada->find("[");
+        3:  134:    fim = entrada->find("]");
+        3:  135:    delimitadores->push_back(entrada->substr(inicio + 1, fim - inicio - 1));
+        3:  136:    *entrada = entrada->substr(fim + 1);
+        -:  137:  }
+        3:  138:  if (entrada->at(0) == '\n') {
+        2:  139:    *entrada = entrada->substr(1);
+        -:  140:  } else {
+        1:  141:    return -1;
+        -:  142:  }
+        -:  143:
+        2:  144:  return 0;
+        -:  145:}
