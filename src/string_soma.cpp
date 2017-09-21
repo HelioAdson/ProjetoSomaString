@@ -1,7 +1,7 @@
-// @file string_soma.cpp
-// @breif Arquivo contendo a implementação das funções de string_soma.hpp
-//
-// @author Helio Adson
+/// @file string_soma.cpp
+/// @breif Arquivo contendo a implementação das funções de string_soma.hpp
+///
+/// @author Helio Adson
 
 #include "string_soma.hpp"
 #include <string>
@@ -10,19 +10,19 @@
 
 using namespace std;
 
-// @fun soma_string(char* string_entrada)
-//
-// A função recebe como entrada o ponteiro string_entrada e primeiramente verifica a 
-// necessidade de redefinição dos delimitadores, realizando ou não a chamada da função
-// redefine_delimitadores. Logo após a string entrada é analisada e os elementos (números, 
-// delimitadores e quebras de linha) são capturados e armanzenados no vector elementos. Cada 
-// indice do vector elementos é ocupado por uma dupla de strings, sendo a primeira o tipo do 
-// elemento (números delimitadores e quebras de linha) e a segunda seu valor. Em seguida o 
-// vector de elementos é analisado quanto a ordem de tipos dos elementos, caso a ordem esteja
-// correta o somatório e calculado e retornado sem problemas e caso a ordem esteja incorreta a função retorna -1.
-//
-// @param string_entrada Ponteiro para char com a string para o cálculo.
-// @return O resultado da soma para o caso valido e -1 para caso contrário.
+/// @fun soma_string(char* string_entrada)
+///
+/// A função recebe como entrada o ponteiro string_entrada e primeiramente verifica a 
+/// necessidade de redefinição dos delimitadores, realizando ou não a chamada da função
+/// redefine_delimitadores. Logo após a string entrada é analisada e os elementos (números, 
+/// delimitadores e quebras de linha) são capturados e armanzenados no vector elementos. Cada 
+/// indice do vector elementos é ocupado por uma dupla de strings, sendo a primeira o tipo do 
+/// elemento (números delimitadores e quebras de linha) e a segunda seu valor. Em seguida o 
+/// vector de elementos é analisado quanto a ordem de tipos dos elementos, caso a ordem esteja
+/// correta o somatório e calculado e retornado sem problemas e caso a ordem esteja incorreta a função retorna -1.
+///
+/// @param string_entrada Ponteiro para char com a string para o cálculo.
+/// @return O resultado da soma para o caso valido e -1 para caso contrário.
 int soma_string(char *string_entrada) {
   string entrada = string_entrada;
   string elemento_esperado;
@@ -119,13 +119,13 @@ int soma_string(char *string_entrada) {
 
 }
 
-// @fun redefine_delimitadores (string* entrada, vector<string>* delimitadores)
-//
-// Captura os delimitadores definidos na primeira linha da string
-//
-// @param entrada Ponteiro para string com os novos delimitadores.
-// @param delimitadores Vector de string contendo os delimitadores que foram encontrados na string entrada.
-// @return 0 caso valido e -1 para caso contrário.
+/// @fun redefine_delimitadores (string* entrada, vector<string>* delimitadores)
+///
+/// Captura os delimitadores definidos na primeira linha da string
+///
+/// @param entrada Ponteiro para string com os novos delimitadores.
+/// @param delimitadores Vector de string contendo os delimitadores que foram encontrados na string entrada.
+/// @return 0 caso valido e -1 para caso contrário.
 int redefine_delimitadores(string* entrada, vector<string>* delimitadores) {
   size_t inicio, fim = 0;
   *entrada = entrada->substr(entrada->find("["));

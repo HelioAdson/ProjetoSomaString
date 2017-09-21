@@ -1,0 +1,64 @@
+\section{src/string\+\_\+soma.cpp File Reference}
+\label{string__soma_8cpp}\index{src/string\+\_\+soma.\+cpp@{src/string\+\_\+soma.\+cpp}}
+{\ttfamily \#include \char`\"{}string\+\_\+soma.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$tuple$>$}\newline
+Include dependency graph for string\+\_\+soma.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ soma\+\_\+string} (char $\ast$string\+\_\+entrada)
+\item 
+int \textbf{ redefine\+\_\+delimitadores} (string $\ast$entrada, vector$<$ string $>$ $\ast$delimitadores)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Arquivo contendo a implementação das funções de \doxyref{string\+\_\+soma.\+hpp}{p.}{string__soma_8hpp}
+
+\begin{DoxyAuthor}{Author}
+Helio Adson 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\label{string__soma_8cpp_a71b205ad7d6a11ab6acff0cc6e49364a}} 
+\index{string\+\_\+soma.\+cpp@{string\+\_\+soma.\+cpp}!redefine\+\_\+delimitadores@{redefine\+\_\+delimitadores}}
+\index{redefine\+\_\+delimitadores@{redefine\+\_\+delimitadores}!string\+\_\+soma.\+cpp@{string\+\_\+soma.\+cpp}}
+\subsubsection{redefine\+\_\+delimitadores()}
+{\footnotesize\ttfamily int redefine\+\_\+delimitadores (\begin{DoxyParamCaption}\item[{string $\ast$}]{entrada,  }\item[{vector$<$ string $>$ $\ast$}]{delimitadores }\end{DoxyParamCaption})}
+
+redefine\+\_\+delimitadores (string$\ast$ entrada, vector$<$string$>$$\ast$ delimitadores)
+
+Captura os delimitadores definidos na primeira linha da string
+
+
+\begin{DoxyParams}{Parameters}
+{\em entrada} & Ponteiro para string com os novos delimitadores. \\
+\hline
+{\em delimitadores} & Vector de string contendo os delimitadores que foram encontrados na string entrada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 caso valido e -\/1 para caso contrário. 
+\end{DoxyReturn}
+\mbox{\label{string__soma_8cpp_a5584a11d7a161d9a35a2e76cb51681bd}} 
+\index{string\+\_\+soma.\+cpp@{string\+\_\+soma.\+cpp}!soma\+\_\+string@{soma\+\_\+string}}
+\index{soma\+\_\+string@{soma\+\_\+string}!string\+\_\+soma.\+cpp@{string\+\_\+soma.\+cpp}}
+\subsubsection{soma\+\_\+string()}
+{\footnotesize\ttfamily int soma\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{string\+\_\+entrada }\end{DoxyParamCaption})}
+
+\doxyref{soma\+\_\+string(char$\ast$ string\+\_\+entrada)}{p.}{string__soma_8cpp_a5584a11d7a161d9a35a2e76cb51681bd}
+
+A função recebe como entrada o ponteiro string\+\_\+entrada e primeiramente verifica a necessidade de redefinição dos delimitadores, realizando ou não a chamada da função redefine\+\_\+delimitadores. Logo após a string entrada é analisada e os elementos (números, delimitadores e quebras de linha) são capturados e armanzenados no vector elementos. Cada indice do vector elementos é ocupado por uma dupla de strings, sendo a primeira o tipo do elemento (números delimitadores e quebras de linha) e a segunda seu valor. Em seguida o vector de elementos é analisado quanto a ordem de tipos dos elementos, caso a ordem esteja correta o somatório e calculado e retornado sem problemas e caso a ordem esteja incorreta a função retorna -\/1.
+
+
+\begin{DoxyParams}{Parameters}
+{\em string\+\_\+entrada} & Ponteiro para char com a string para o cálculo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O resultado da soma para o caso valido e -\/1 para caso contrário. 
+\end{DoxyReturn}
