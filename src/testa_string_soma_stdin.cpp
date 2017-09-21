@@ -1,7 +1,6 @@
 #include "string_soma.hpp"
 #include <iostream>
 #include <cstdio>
-#include <cstring>
 
 int main() {
   char string_entrada[100];

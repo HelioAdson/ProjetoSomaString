@@ -17,18 +17,10 @@ int soma_string(char *string_entrada) {
   bool delimitador_encontrado;
 
   if (entrada.find("//[") == 0) {
-    entrada = entrada.substr(entrada.find("["));
-    while (entrada.find("]") != std::string::npos) {
-      inicio = entrada.find("[");
-      fim = entrada.find("]");
-      delimitadores.push_back(entrada.substr(inicio + 1, fim - inicio - 1));
-      entrada = entrada.substr(fim + 1);
-    }
-    if (entrada[0] == '\n') {
-      entrada = entrada.substr(1);
-    } else {
-      return -1;
-    }
+     cont = redefine_delimitadores(&entrada, &delimitadores);
+     if (cont == -1) {
+       return -1;
+     }
   }
 
   while (entrada.size() > 0) {
@@ -98,4 +90,23 @@ int soma_string(char *string_entrada) {
     return -1;
   }
   return somatorio;
+
+}
+
+int redefine_delimitadores(string* entrada, vector<string>* delimitadores) {
+  size_t inicio, fim = 0;
+  *entrada = entrada->substr(entrada->find("["));
+  while (entrada->find("]") != std::string::npos) {
+    inicio = entrada->find("[");
+    fim = entrada->find("]");
+    delimitadores->push_back(entrada->substr(inicio + 1, fim - inicio - 1));
+    *entrada = entrada->substr(fim + 1);
+  }
+  if (entrada->at(0) == '\n') {
+    *entrada = entrada->substr(1);
+  } else {
+    return -1;
+  }
+
+  return 0;
 }
